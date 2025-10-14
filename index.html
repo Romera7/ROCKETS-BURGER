@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="IMAGENS/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Rocket's Burger</title>
+</head>
+
+<body>
+    <div class="loader" id="loader">
+        <div class="load" id="load">
+            <img src="IMAGENS/logo.png" class="log" id="log">
+            <div class="animation-bar" id="animacao"></div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="#home"><img src="IMAGENS/logo.png" /></a>
+            </div>
+
+            <div class="nav-list">
+                <ul>
+                    <li class="nav-item"><a href="#about" class="nav-link">SOBRE NÓS</a></li>
+                    <li class="nav-item"><a href="menu.html" class="nav-link">CARDÁPIO</a></li>
+                    <li class="nav-item"><a href="#address" class="nav-link">ENDEREÇO</a></li>
+                    <div class="dropdown">
+                        <button>DELIVERY</button>
+                        <div class="content">
+                            <a href="https://www.ifood.com.br" target="_blank" rel="noopener noreferrer">Ifood</a>
+                            <a href="https://www.rappi.com.br" target="_blank" rel="noopener noreferrer">Rappi</a>
+                        </div>
+                    </div>
+
+
+                </ul>
+            </div>
+
+            <div class="header-actions">
+                <button class="cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <div class="login-button">
+                    <button onclick="window.location.href='login.html'">ENTRAR</button>
+                </div>
+
+                <div class="mobile-menu-icon">
+                    <button onclick="menuShow()"><img class="icon" src="IMAGENS/menu_white_36dp.svg" alt=""></button>
+                </div>
+            </div>
+
+            
+
+
+        </nav>
+
+        <div class="mobile-menu">
+            <ul>
+                <li class="nav-item"><a href="#about" class="nav-link">SOBRE NÓS</a></li>
+                <li class="nav-item"><a href="menu.html" class="nav-link">CARDÁPIO</a></li>
+                <li class="nav-item"><a href="#address" class="nav-link">ENDEREÇO</a></li>
+                <li class="nav-item"><a href="https://www.ifood.com.br" target="_blank" rel="noopener noreferrer" class="nav-link">IFOOD</a></li>
+                <li class="nav-item"><a href="https://www.rappi.com.br" target="_blank" rel="noopener noreferrer" class="nav-link">RAPPI</a></li>
+            </ul>
+
+            <div class="login-button">
+                <button onclick="window.location.href='login.html'">ENTRAR</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="slider" id="home">
+        <div class="slides">
+            <img class="slide" src="IMAGENS/1.png"  id="slide1">
+            <img class="slide" src="IMAGENS/2.png"  id="slide2">
+            <img class="slide" src="IMAGENS/3.png"  id="slide3">
+            <img class="slide" src="IMAGENS/4.png"  id="slide4">
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094</button>
+        <button class="next" onclick="nextSlide()">&#10095</button>
+    </div>
+
+    <p id="about"></p><br/><br/><br/>
+    <section class="about" alt="sobre-nos">
+        <h2 class="title">SOBRE NÓS</h2>
+        <div class="row">
+            <div class="container-image">
+                <img src="IMAGENS/mascote.png">
+            </div><br />
+            <div class="content">
+                <h3>Hamburgueria Artesanal</h3>
+                <p>A Rockets Burger nasceu em 1990, com o sonho de criar o hambúrguer perfeito: artesanal, fresco e cheio de sabor. Em uma pequena cozinha, um grupo de amigos apaixonados por boa comida começou a experimentar, e o resultado foi um sucesso instantâneo!
+                    <br>Hoje, com mais de 30 anos de história, continuamos com a mesma missão: oferecer uma experiência única a cada mordida, sempre com ingredientes frescos e de qualidade. Aqui, cada hambúrguer é feito com muito carinho, para que você se sinta em casa a cada visita.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <h2 class="title">NOSSO CARDÁPIO</h2>
+
+        <div class="box-container">
+            <div class="box">
+                <img src="IMAGENS/ham1.png" alt="item-1">
+                <h3>Rocket’s Double Blast</h3>
+                <div class="price">R$ 39,90</div>
+                <a class="btn-menu" data-id="1" data-name="Rocket’s Double Blast" data-price="39.90">Adicione ao carrinho</a>
+            </div>
+
+            <div class="box">
+                <img src="IMAGENS/ham2.png" alt="item-2">
+                <h3>Astro Crunch Biggest</h3>
+                <div class="price">R$ 36,90</div>
+                <a class="btn-menu" data-id="2" data-name="Astro Crunch Biggest" data-price="36.90">Adicione ao carrinho</a>
+            </div>
+
+            <div class="box">
+                <img src="IMAGENS/ham3.png" alt="item-3">
+                <h3>Meteor Especial Burger</h3>
+                <div class="price">R$ 44,90</div>
+                <a class="btn-menu" data-id="3" data-name="Meteor Espacial Burger" data-price="44.90">Adicione ao carrinho</a>
+            </div>
+
+        </div>
+        <center><a href="menu.html" class="btn">VER MAIS</a></center>
+    </section>
+
+    <section class="address" id="address">
+        <h2 class="title">NOSSO ENDEREÇO</h2>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4501.166666098736!2d-51.09762472374337!3d-26.243245977052442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e6610000a0fa51%3A0xfcc63f33aa78a802!2sRocket&#39;s%20Burguer!5e1!3m2!1spt-BR!2sbr!4v1755631327500!5m2!1spt-BR!2sbr"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Rocket's Burger. Todos os direitos reservados.</p>
+            <div class="socials">
+                <a href="https://pt-br.facebook.com/" target="_blank" rel="noopener noreferrer"><img src="IMAGENS/facebook.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src="IMAGENS/instagram.png" alt="Instagram"></a>
+                <a href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer"><img src="IMAGENS/whatsapp.png" alt="Whatsapp"></a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" title="Voltar ao topo">
+        &#8679;
+    </button>
+
+    <!-- Botão de Acessibilidade -->
+    <button id="accessibility-btn" class="accessibility-button" aria-label="Opções de Acessibilidade">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 5.5C14.8 5.4 14.6 5.4 14.4 5.5L12 6.5L9.6 5.5C9.4 5.4 9.2 5.4 9 5.5L3 7V9L9 7.5L12 8.5L15 7.5L21 9ZM12 10.5L9 9.5V22H11V16H13V22H15V9.5L12 10.5Z" fill="currentColor"/>
+        </svg>
+        <p>Acessibilidade</p>
+    </button>
+
+    <!-- Painel de Acessibilidade -->
+    <div id="accessibility-panel" class="accessibility-panel" role="dialog" aria-labelledby="accessibility-title" aria-hidden="true">
+        <div class="accessibility-content">
+            <div class="accessibility-header">
+                <h2 id="accessibility-title">Acessibilidade</h2>
+                <button id="close-panel" class="close-button" aria-label="Fechar painel de acessibilidade">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="accessibility-options">
+                <!-- Alto Contraste -->
+                <div class="option-group">
+                    <h3>Alto - contraste</h3>
+                    <div class="toggle-container">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="high-contrast" aria-describedby="contrast-desc">
+                            <span class="arrasto"></span>
+                        </label>
+                        <span id="contrast-desc" class="option-description">Ativar modo de alto contraste</span>
+                    </div>
+                </div>
+
+                <!-- Tamanho da Fonte -->
+                <div class="option-group">
+                    <h3>Tamanho da fonte</h3>
+                    <div class="font-size-options">
+                        <button class="font-size-btn active" data-size="normal" aria-pressed="true">Padrão</button>
+                        <button class="font-size-btn" data-size="large" aria-pressed="false">Grande</button>
+                        <button class="font-size-btn" data-size="extra-large" aria-pressed="false">Extra grande</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho de Compras -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h3>Seu Carrinho</h3>
+                <button class="close-cart" id="closeCart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Itens do carrinho serão adicionados aqui dinamicamente -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Total: R$ <span id="cartTotal">0,00</span></strong>
+                </div>
+                <button class="checkout-btn">Finalizar Pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificação de item adicionado -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Item adicionado ao carrinho!</span>
+    </div>
+
+    <!-- Overlay para fechar o painel -->
+    <div id="accessibility-overlay" class="accessibility-overlay" aria-hidden="true"></div>
+
+    <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+    <script src="script.js"></script>
+    <script src="script_preloader.js"></script>
+      
+    
+
+</body>
+
+</html>

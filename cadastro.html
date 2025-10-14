@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Rockect's Burguer</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+
+    <div class="loader" id="loader">
+        <div class="load" id="load">
+            <img src="IMAGENS/logo.png" class="log" id="log">
+            <div class="animation-bar" id="animacao"></div>
+        </div>
+    </div>
+    
+    <main class="container">
+        <form>
+            <h1>Cadastro Rocket's</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Usuário">
+                <i class="bi bi-person-fill"></i>
+            </div>
+
+            <div class="input-box">
+                <input type="email" placeholder="E-mail">
+                <i class="bi bi-envelope-fill"></i>
+            </div>
+
+            <div class="input-box">
+                <input type="text" placeholder="Telefone">
+                <i class="bi bi-telephone-fill"></i>
+            </div>
+
+
+            <div class="input-box">
+                <input type="text" placeholder="CPF">
+                <i class="bi bi-person-vcard-fill"></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" placeholder="Senha">
+                <i class="bi bi-lock-fill"></i>
+            </div>
+
+            <div>
+                <button type="submit" class="cadastrar">Cadastrar</button>
+            </div>
+            </div>
+        </form>
+    </main>
+    <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+    <script src="script_preloader.js"></script>
+    
+</body>
+</html>
