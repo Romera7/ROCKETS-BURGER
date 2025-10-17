@@ -8,7 +8,7 @@
 }
 
 
-.loader{
+.loader{ 
     position: fixed;
     top: 0;
     left: 0; 
@@ -1816,29 +1816,6 @@ body.font-extra-large .nav-bar{
     .menu .title {
         font-size: 1.5rem;
         padding: 0rem 1rem;
-    }
-
-    .opcoes {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0.7rem;
-    }
-
-    .opcoes .img_op {
-        padding: 0 0.5rem;
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .opcoes .img_op img {
-        width: 6rem;
-        height: 6rem;
-        margin-bottom: -8.8rem;
-        margin-top: 1.4rem;
     }
 
     .menu .box-container {
