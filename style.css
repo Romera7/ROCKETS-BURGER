@@ -1778,6 +1778,7 @@ body.font-extra-large .nav-bar{
     .mobile-menu .login-button:hover {
         transform: scale(1.05);
     }
+    
     .mobile-menu .login-button button {
         width: 100%;
         border: none;
