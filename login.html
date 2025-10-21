@@ -16,10 +16,10 @@
     </div>
 </div>
     <main class="container">
-        <form>
+        <form id="login-form">
             <h1>Login Rocket's</h1>
             <div class="input-box">
-                <input type="email" placeholder="Usuário">
+                <input type="email" placeholder="E-mail">
                 <i class="bi bi-person-fill"></i>
             </div>
 
@@ -70,6 +70,8 @@
   </script>
 
 <script src="script_preloader.js"></script>
+
+
 <script type="module">
   // Importa os módulos necessários
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
@@ -89,6 +91,7 @@
   // Inicializa o app e a autenticação
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  auth.languageCode = 'pt-br'
   const provider = new GoogleAuthProvider();
 
   // Função de login com Google
@@ -107,7 +110,7 @@
     });
   }
 
-  const loginForm = document.querySelector('form');
+  const loginForm = document.getElementById("login-form");
 if (loginForm) {
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();

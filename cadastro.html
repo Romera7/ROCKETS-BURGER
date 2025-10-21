@@ -25,7 +25,7 @@
             </div>
 
             <div class="input-box">
-                <input type="email" placeholder="E-mail">
+                <input type="email" placeholder="Email">
                 <i class="bi bi-envelope-fill"></i>
             </div>
 
@@ -56,7 +56,7 @@
 
     <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+    import { getAuth, createUserWithEmailAndPassword } 
       from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
   
     const firebaseConfig = {
@@ -80,9 +80,10 @@
     e.preventDefault();
 
     // Pega os dados do formulário
-    const email = form.querySelector("input[name='email']").value;
-    const senha = form.querySelector("input[name='senha']").value;
-    const usuario = form.querySelector("input[name='usuario']").value;
+    const usuario = loginForm.querySelector('input[type="text"]').value;
+    const email = loginForm.querySelector('input[type="email"]').value;
+    const senha = loginForm.querySelector('input[type="password"]').value;
+    
 
     try {
       // 🔑 Cria usuário no Firebase
