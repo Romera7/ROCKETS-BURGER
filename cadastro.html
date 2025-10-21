@@ -63,7 +63,7 @@
         apiKey: "AIzaSyAPp-O4ksD37vi71GJJiQ8jMo9pBnolYh8",
         authDomain: "rockets-burger-5e9a8.firebaseapp.com",
         projectId: "rockets-burger-5e9a8",
-        storageBucket: "rockets-burger-5e9a8.firebasestorage.app",
+        storageBucket: "rockets-burger-5e9a8.appspot.com",
         messagingSenderId: "925732976875",
         appId: "1:925732976875:web:52098d4e25dcc67252a6ae"
     };
@@ -80,9 +80,10 @@
     e.preventDefault();
 
     // Pega os dados do formulário
-    const usuario = loginForm.querySelector('input[type="text"]').value;
-    const email = loginForm.querySelector('input[type="email"]').value;
-    const senha = loginForm.querySelector('input[type="password"]').value;
+    const usuario = form.querySelector('input[type="text"]').value;
+    const email = form.querySelector('input[type="email"]').value;
+    const senha = form.querySelector('input[type="password"]').value;
+
     
 
     try {
