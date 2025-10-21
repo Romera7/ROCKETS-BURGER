@@ -103,7 +103,7 @@
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
         alert(`Bem-vindo, ${user.displayName}!`);
-        window.location.href = "index.html"; // redireciona
+        window.location.href = "inicio.html"; // redireciona
       } catch (error) {
         alert("Erro no login: " + error.message);
       }
