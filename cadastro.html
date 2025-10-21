@@ -17,7 +17,7 @@
     </div>
     
     <main class="container">
-        <form>
+        <form id="cadastro-form">
             <h1>Cadastro Rocket's</h1>
             <div class="input-box">
                 <input type="text" placeholder="Usuário">
@@ -27,17 +27,6 @@
             <div class="input-box">
                 <input type="email" placeholder="E-mail">
                 <i class="bi bi-envelope-fill"></i>
-            </div>
-
-            <div class="input-box">
-                <input type="text" placeholder="Telefone">
-                <i class="bi bi-telephone-fill"></i>
-            </div>
-
-
-            <div class="input-box">
-                <input type="text" placeholder="CPF">
-                <i class="bi bi-person-vcard-fill"></i>
             </div>
 
             <div class="input-box">
@@ -64,6 +53,54 @@
   </script>
 
     <script src="script_preloader.js"></script>
+
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+      from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+  
+    const firebaseConfig = {
+        apiKey: "AIzaSyAPp-O4ksD37vi71GJJiQ8jMo9pBnolYh8",
+        authDomain: "rockets-burger-5e9a8.firebaseapp.com",
+        projectId: "rockets-burger-5e9a8",
+        storageBucket: "rockets-burger-5e9a8.firebasestorage.app",
+        messagingSenderId: "925732976875",
+        appId: "1:925732976875:web:52098d4e25dcc67252a6ae"
+    };
+  
+    // Inicializa o app e a autenticação
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Captura o formulário
+  const form = document.getElementById("cadastro-form");
+
+  // Evento de envio
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Pega os dados do formulário
+    const email = form.querySelector("input[name='email']").value;
+    const senha = form.querySelector("input[name='senha']").value;
+    const usuario = form.querySelector("input[name='usuario']").value;
+
+    try {
+      // 🔑 Cria usuário no Firebase
+      const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+      const user = userCredential.user;
+
+      alert(`Usuário ${usuario} cadastrado com sucesso!`);
+      console.log("Usuário cadastrado:", user);
+
+      // Redirecionar, se quiser:
+      window.location.href = "login.html";
+    } catch (error) {
+      alert("Erro ao cadastrar: " + error.message);
+      console.error(error);
+    }
+  });
+  </script>
+  
     
 </body>
 </html>
