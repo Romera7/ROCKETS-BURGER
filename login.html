@@ -31,7 +31,7 @@
 
             <div>
                 <label class="relembrar-senha">
-                <a>Esqueci minha senha</a>
+                <a href="#" id="forgot-password">Esqueci minha senha</a>
             </label>
             </div>
 
@@ -78,6 +78,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
     from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
   // Configuração do Firebase (copie do seu painel)
   const firebaseConfig = {
@@ -120,18 +121,40 @@ if (loginForm) {
 
     try {
       await signInWithEmailAndPassword(auth, email, senha);
-      Swal.fire({
-    icon: 'success',
-    title: 'Login realizado!',
-    text: 'Bem-vindo de volta 🚀',
-    showConfirmButton: false,
-    timer: 2000
-  }).then(() => {
-    window.location.href = "inicio.html";
-  });
-      
+      alert("Login realizado com sucesso!");
+      window.location.href = "inicio.html";
     } catch (error) {
       alert("Erro: " + error.message);
+    }
+  });
+}
+
+
+
+const forgotPasswordLink = document.getElementById("forgot-password");
+
+if (forgotPasswordLink) {
+  forgotPasswordLink.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const email = document.querySelector('input[type="email"]').value;
+
+    if (!email) {
+      alert("Por favor, digite seu e-mail antes de redefinir a senha.");
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      Swal.fire({
+  icon: "success",
+  title: "E-mail enviado!",
+  text: "Verifique sua caixa de entrada para redefinir sua senha.",
+  showConfirmButton: false,
+  timer: 2500
+});
+    } catch (error) {
+      alert("Erro ao enviar e-mail: " + error.message);
     }
   });
 }
