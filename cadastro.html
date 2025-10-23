@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Rockect's Burguer</title>
+    <title>Rockect's Burguer</title>
+    <link rel="icon" type="image/x-icon" href="IMAGENS/logo.png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="cadastro.css">
 </head>
 <body>
@@ -91,15 +93,23 @@
       const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
       const user = userCredential.user;
 
-      
-      alert(`Usuário ${usuario} cadastrado com sucesso!`);
-      console.log("Usuário cadastrado:", user);
+      Swal.fire({
+        icon: "success",
+        title: "Cadastro realizado!",
+        text: "Bem-vindo 🚀",
+        showConfirmButton: false,
+        timer: 3000
+      }).then(() => {
+        window.location.href = "login.html";
+      });
 
-      // Redirecionar, se quiser:
-      window.location.href = "login.html";
     } catch (error) {
-      alert("Erro ao cadastrar: " + error.message);
-      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao realizar cadastro",
+        text: error.message,
+        confirmButtonColor: "#d33"
+      });
     }
   });
   </script>

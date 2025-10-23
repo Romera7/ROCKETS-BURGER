@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Rockect's Burguer</title>
+    <title>Rockect's Burguer</title>
+    <link rel="icon" type="image/x-icon" href="IMAGENS/logo.png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="login.css">
@@ -104,10 +105,22 @@
       try {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
-        alert(`Bem-vindo, ${user.displayName}!`);
-        window.location.href = "inicio.html"; // redireciona
+        Swal.fire({
+        icon: "success",
+        title: "Login realizado!",
+        text: "Bem-vindo 🚀",
+        showConfirmButton: false,
+        timer: 3000
+      }).then(() => {
+        window.location.href = "inicio.html";
+      });
       } catch (error) {
-        alert("Erro no login: " + error.message);
+        Swal.fire({
+        icon: "error",
+        title: "Erro ao fazer login",
+        text: error.message,
+        confirmButtonColor: "#d33"
+      });
       }
     });
   }
@@ -116,6 +129,7 @@
 if (loginForm) {
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
     const email = loginForm.querySelector('input[type="email"]').value;
     const senha = loginForm.querySelector('input[type="password"]').value;
 
@@ -124,9 +138,9 @@ if (loginForm) {
       Swal.fire({
         icon: "success",
         title: "Login realizado!",
-        text: "Bem-vindo de volta 🚀",
+        text: "Bem-vindo 🚀",
         showConfirmButton: false,
-        timer: 2000
+        timer: 3000
       }).then(() => {
         window.location.href = "inicio.html";
       });
