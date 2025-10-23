@@ -1464,12 +1464,18 @@ body.font-extra-large section{
     max-width: 1400px;
 }
 
-body.font-large .menu .box-container{
-    gap: 2.2rem;
+body.font-large .opcoes .img_op img{
+    width: 7rem;
+    height: 7rem;
+    margin-bottom: -9.8rem;
 }
-body.font-extra-large .menu .box-container {
-    gap: 3rem;
+
+body.font-extra-large .opcoes .img_op img{
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: -10.8rem;
 }
+
 
 body.font-large .menu .box-container .box h3{
     font-size: 2.5rem;
@@ -1489,18 +1495,6 @@ body.font-large .menu .box-container .box .price{
 body.font-extra-large .menu .box-container .box .price{
     font-size: 3rem;
     padding: 1.8rem;
-}
-
-body.font-large .opcoes .img_op img{
-    width: 7rem;
-    height: 7rem;
-    margin-bottom: -9.8rem;
-}
-
-body.font-extra-large .opcoes .img_op img{
-    width: 8rem;
-    height: 8rem;
-    margin-bottom: -10.8rem;
 }
 
 body.font-large .menu .box-container .box .btn-menu{

@@ -1478,10 +1478,10 @@ body.font-extra-large .title{
 }
 
 body.font-large section{
-    max-width: 1260px;
+    max-width: 1220px;
 }
 body.font-extra-large section{
-    max-width: 1450px;
+    max-width: 1400px;
 }
 
 body.font-large .menu .box-container{
@@ -1812,11 +1812,6 @@ body.font-extra-large .nav-bar{
 
     .about .row img {
         width: 20rem;
-    }
-
-    .menu .title {
-        font-size: 1.5rem;
-        padding: 0rem 1rem;
     }
 
     .menu .box-container {
