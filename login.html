@@ -121,10 +121,22 @@ if (loginForm) {
 
     try {
       await signInWithEmailAndPassword(auth, email, senha);
-      alert("Login realizado com sucesso!");
-      window.location.href = "inicio.html";
+      Swal.fire({
+        icon: "success",
+        title: "Login realizado!",
+        text: "Bem-vindo de volta 🚀",
+        showConfirmButton: false,
+        timer: 2000
+      }).then(() => {
+        window.location.href = "inicio.html";
+      });
     } catch (error) {
-      alert("Erro: " + error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao fazer login",
+        text: error.message,
+        confirmButtonColor: "#d33"
+      });
     }
   });
 }
@@ -147,12 +159,12 @@ if (forgotPasswordLink) {
     try {
       await sendPasswordResetEmail(auth, email);
       Swal.fire({
-  icon: "success",
-  title: "E-mail enviado!",
-  text: "Verifique sua caixa de entrada para redefinir sua senha.",
-  showConfirmButton: false,
-  timer: 2500
-});
+      icon: "success",
+      title: "E-mail enviado!",
+      text: "Verifique sua caixa de entrada para redefinir sua senha.",
+      showConfirmButton: false,
+      timer: 2500
+    });
     } catch (error) {
       alert("Erro ao enviar e-mail: " + error.message);
     }
