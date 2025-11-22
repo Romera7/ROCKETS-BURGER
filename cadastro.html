@@ -57,21 +57,24 @@
     <script src="script_preloader.js"></script>
 
     <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
     import { getAuth, createUserWithEmailAndPassword } 
-      from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+      from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
   
     const firebaseConfig = {
-        apiKey: "AIzaSyAPp-O4ksD37vi71GJJiQ8jMo9pBnolYh8",
-        authDomain: "rockets-burger-5e9a8.firebaseapp.com",
-        projectId: "rockets-burger-5e9a8",
-        storageBucket: "rockets-burger-5e9a8.appspot.com",
-        messagingSenderId: "925732976875",
-        appId: "1:925732976875:web:52098d4e25dcc67252a6ae"
+        apiKey: "AIzaSyD0YXEqANYdkTQmX9LnxAMs_Wvxq7K0V64",
+    authDomain: "rocketsburger-d1723.firebaseapp.com",
+    projectId: "rocketsburger-d1723",
+    storageBucket: "rocketsburger-d1723.firebasestorage.app",
+    messagingSenderId: "526917009188",
+    appId: "1:526917009188:web:ffad504ed3253dc2f23db1",
+    measurementId: "G-D249EYEW52"
     };
   
     // Inicializa o app e a autenticação
   const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
   const auth = getAuth(app);
 
   // Captura o formulário

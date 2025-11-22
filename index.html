@@ -229,6 +229,73 @@
     <!-- Overlay para fechar o painel -->
     <div id="accessibility-overlay" class="accessibility-overlay" aria-hidden="true"></div>
 
+    <!-- Modal de Endereço para Delivery -->
+    <div class="address-modal-overlay" id="addressModalOverlay">
+        <div class="address-modal">
+            <div class="address-modal-header">
+                <h2>Para onde vai seu pedido hoje?</h2>
+                <p>Preencha o formulário conforme o endereço desejado para saborear seu Rocket's Buerger!</p>
+                <button class="close-address-modal" id="closeAddressModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="delivery-options">
+                <button class="delivery-option active" id="deliveryOption">
+                    <i class="fas fa-truck"></i>
+                    Delivery Rocket's
+                </button>
+            </div>
+
+            <form id="addressForm" class="address-form">
+                <div class="form-group">
+                    <label for="cep">CEP</label>
+                    <input type="text" id="cep" name="cep" placeholder="00000-000" maxlength="9" required>
+                    <span class="cep-error" id="cepError"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rua">Rua</label>
+                        <input type="text" id="rua" name="rua" placeholder="Rua" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" name="numero" placeholder="Número" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" id="complemento" name="complemento" placeholder="Apto, Sala, etc (opcional)">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" placeholder="Bairro" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Cidade" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <input type="text" id="estado" name="estado" placeholder="Estado" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                </div>
+
+                <button type="submit" class="submit-address-btn">Confirmar Endereço</button>
+            </form>
+        </div>
+    </div>
+
     <!-- VLibras -->
   <div vw class="enabled">
     <div vw-access-button class="active"></div>

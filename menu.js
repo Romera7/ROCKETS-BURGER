@@ -929,3 +929,251 @@ document.addEventListener("click", function(e) {
     }
 });
 
+
+// ===== LÓGICA DO MODAL DE ENDEREÇO PARA DELIVERY =====
+
+class AddressFormManager {
+    constructor() {
+        this.addressModalOverlay = document.getElementById('addressModalOverlay');
+        this.addressForm = document.getElementById('addressForm');
+        this.closeAddressModal = document.getElementById('closeAddressModal');
+        this.checkoutBtn = document.querySelector('.checkout-btn');
+        this.cepInput = document.getElementById('cep');
+        this.cepError = document.getElementById('cepError');
+        
+        // Opções de entrega
+        this.pickupOption = document.getElementById('pickupOption');
+        this.deliveryOption = document.getElementById('deliveryOption');
+        
+        this.deliveryMode = 'delivery'; // 'pickup' ou 'delivery'
+        
+        this.init();
+    }
+
+    init() {
+        // Event listeners para abrir/fechar o modal
+        this.checkoutBtn.addEventListener('click', () => this.openAddressModal());
+        this.closeAddressModal.addEventListener('click', () => this.closeModal());
+        this.addressModalOverlay.addEventListener('click', (e) => {
+            if (e.target === this.addressModalOverlay) {
+                this.closeModal();
+            }
+        });
+
+        // Event listeners para as opções de entrega
+        this.pickupOption.addEventListener('click', () => this.setDeliveryMode('pickup'));
+        this.deliveryOption.addEventListener('click', () => this.setDeliveryMode('delivery'));
+
+        // Event listener para o formulário
+        this.addressForm.addEventListener('submit', (e) => this.handleFormSubmit(e));
+
+        // Event listener para o CEP com debounce
+        this.cepInput.addEventListener('blur', () => this.handleCepChange());
+        
+        // Máscara para CEP
+        this.cepInput.addEventListener('input', (e) => this.formatCep(e));
+
+        // Máscara para telefone
+        const telefoneInput = document.getElementById('telefone');
+        telefoneInput.addEventListener('input', (e) => this.formatTelefone(e));
+    }
+
+    openAddressModal() {
+        this.addressModalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeModal() {
+        this.addressModalOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    setDeliveryMode(mode) {
+        this.deliveryMode = mode;
+        
+        // Atualizar classe active nos botões
+        if (mode === 'pickup') {
+            this.pickupOption.classList.add('active');
+            this.deliveryOption.classList.remove('active');
+            
+            // Desabilitar campos de endereço para pickup
+            this.disableAddressFields();
+        } else {
+            this.deliveryOption.classList.add('active');
+            this.pickupOption.classList.remove('active');
+            
+            // Habilitar campos de endereço para delivery
+            this.enableAddressFields();
+        }
+    }
+
+    disableAddressFields() {
+        document.getElementById('cep').disabled = true;
+        document.getElementById('rua').disabled = true;
+        document.getElementById('numero').disabled = true;
+        document.getElementById('complemento').disabled = true;
+        document.getElementById('bairro').disabled = true;
+        document.getElementById('cidade').disabled = true;
+        document.getElementById('estado').disabled = true;
+        document.getElementById('telefone').disabled = true;
+    }
+
+    enableAddressFields() {
+        document.getElementById('cep').disabled = false;
+        document.getElementById('rua').disabled = true; // readonly
+        document.getElementById('numero').disabled = false;
+        document.getElementById('complemento').disabled = false;
+        document.getElementById('bairro').disabled = true; // readonly
+        document.getElementById('cidade').disabled = true; // readonly
+        document.getElementById('estado').disabled = true; // readonly
+        document.getElementById('telefone').disabled = false;
+    }
+
+    formatCep(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 5) {
+            value = value.slice(0, 5) + '-' + value.slice(5, 8);
+        }
+        e.target.value = value;
+    }
+
+    formatTelefone(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 0) {
+            if (value.length <= 2) {
+                value = '(' + value;
+            } else if (value.length <= 7) {
+                value = '(' + value.slice(0, 2) + ') ' + value.slice(2);
+            } else {
+                value = '(' + value.slice(0, 2) + ') ' + value.slice(2, 7) + '-' + value.slice(7, 11);
+            }
+        }
+        e.target.value = value;
+    }
+
+    async handleCepChange() {
+        const cep = this.cepInput.value.replace(/\D/g, '');
+        
+        // Limpar mensagem de erro
+        this.cepError.textContent = '';
+        
+        if (cep.length !== 8) {
+            this.cepError.textContent = 'CEP deve ter 8 dígitos';
+            return;
+        }
+
+        try {
+            const endereco = await this.buscarEnderecoPorCep(cep);
+            if (endereco) {
+                this.preencherFormulario(endereco);
+            } else {
+                this.cepError.textContent = 'CEP não encontrado';
+            }
+        } catch (error) {
+            this.cepError.textContent = 'Erro ao buscar CEP. Tente novamente.';
+            console.error('Erro:', error);
+        }
+    }
+
+    async buscarEnderecoPorCep(cep) {
+        const url = `https://viacep.com.br/ws/${cep}/json/`;
+        
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.erro) {
+                return null;
+            }
+
+            return data;
+        } catch (error) {
+            console.error('Erro ao buscar CEP:', error);
+            return null;
+        }
+    }
+
+    preencherFormulario(endereco) {
+        document.getElementById('rua').value = endereco.logradouro || '';
+        document.getElementById('bairro').value = endereco.bairro || '';
+        document.getElementById('cidade').value = endereco.localidade || '';
+        document.getElementById('estado').value = endereco.uf || '';
+    }
+
+    handleFormSubmit(e) {
+        e.preventDefault();
+
+        if (this.deliveryMode === 'pickup') {
+            // Lógica para retirada
+            this.processarRetirada();
+        } else {
+            // Lógica para delivery
+            this.processarDelivery();
+        }
+    }
+
+    processarRetirada() {
+        // Aqui você pode enviar os dados para o servidor
+        console.log('Pedido para retirada processado');
+        
+        // Mostrar notificação de sucesso
+        this.showSuccessNotification('Pedido de retirada confirmado!');
+        
+        // Fechar modal
+        setTimeout(() => this.closeModal(), 1500);
+    }
+
+    processarDelivery() {
+        // Validar campos obrigatórios
+        const cep = document.getElementById('cep').value;
+        const numero = document.getElementById('numero').value;
+        const telefone = document.getElementById('telefone').value;
+
+        if (!cep || !numero || !telefone) {
+            this.cepError.textContent = 'Preencha todos os campos obrigatórios';
+            return;
+        }
+
+        // Aqui você pode enviar os dados para o servidor
+        const endereco = {
+            cep: cep,
+            rua: document.getElementById('rua').value,
+            numero: numero,
+            complemento: document.getElementById('complemento').value,
+            bairro: document.getElementById('bairro').value,
+            cidade: document.getElementById('cidade').value,
+            estado: document.getElementById('estado').value,
+            telefone: telefone
+        };
+
+        console.log('Dados de entrega:', endereco);
+        
+        // Mostrar notificação de sucesso
+        this.showSuccessNotification('Endereço confirmado! Pedido será entregue em breve.');
+        
+        // Fechar modal
+        setTimeout(() => this.closeModal(), 1500);
+    }
+
+    showSuccessNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification show';
+        notification.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>${message}</span>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+}
+
+// Inicializar o gerenciador de formulário de endereço quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', () => {
+    new AddressFormManager();
+});
+
